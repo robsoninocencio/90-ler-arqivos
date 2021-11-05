@@ -4,11 +4,6 @@ import FormData from "form-data";
 
 import fs from "fs";
 
-// import { Readable } from "stream";
-// import readline from "readline";
-
-// import { client } from "./database/client";
-
 export default {
   async login(req: Request, res: Response) {
     try {
@@ -162,24 +157,8 @@ export default {
       const filePath = __dirname + "/jsonFile.json";
 
       fs.writeFileSync(filePath, jsonData);
-      // fs.writeFileSync(filePath, "");
-      // fs.writeFile(filePath, jsonData, function (err) {
-      //   if (err) {
-      //     console.log("Erro na criação do arquivo");
-      //     console.error(err);
-      //   }
-      //   console.log("Arquivo Criado");
-      // });
 
       const file = fs.readFileSync(filePath, { encoding: "utf8" });
-      // fs.readFile(filePath, async (err, file) => {
-      // if (err) {
-      //   console.log("Erro na leitura do arquivo");
-      //   console.error(err);
-      // }
-
-      // console.log("file");
-      // console.log(file);
 
       const formData = new FormData();
       formData.append("FileName", filePath);
@@ -215,96 +194,9 @@ export default {
       console.log("attach.data");
       console.log(attach.data);
       return attach.data;
-
-      // });
     } catch (error) {
       console.error("Houve um erro:");
       console.error(error);
     }
   },
-
-  async attachNew(req: Request, res: Response) {
-    // console.log(JSON.stringify(req.body, null, 2));
-    let jsonData = JSON.stringify(req.body, null, 2);
-    // console.log(jsonData);
-    fs.writeFileSync("jsonFile.json", jsonData);
-
-    // try {
-    //   let config = {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //       "x-api-key": `'${req.headers.xapikey}'`,
-    //       version: `'${req.headers.version}'`,
-    //     },
-    //   };
-    //   console.log(config);
-    //   // const body = '{"userName": "api.integra", "password": "@pi.1nt3gr@"}';
-    //   // const { data } = await axios.post(
-    //   //   "https://workflow.abaris.com.br/api/v1/login",
-    //   //   body,
-    //   //   config
-    //   // );
-    //   // //   return res.json("ok");
-    //   // return res.json(data);
-    // } catch (error) {
-    //   console.error(error);
-    // }
-    // console.log(req);
-    // console.log(req.file?.buffer.toString("utf-8"));
-    // const { file } = req;
-    // const { buffer }: any = file;
-
-    // const readableFile = new Readable();
-    // readableFile.push(buffer);
-    // readableFile.push(null);
-
-    // const productsLine = readline.createInterface({
-    //   input: readableFile,
-    // });
-
-    // const products: Product[] = [];
-
-    // for await (let line of productsLine) {
-    //   // console.log(line);
-    //   const productLineSplit = line.split(",");
-
-    //   // console.log(productLineSplit[0]);
-
-    //   products.push({
-    //     code_bar: productLineSplit[0],
-    //     description: productLineSplit[1],
-    //     price: Number(productLineSplit[2]),
-    //     quantity: Number(productLineSplit[3]),
-    //   });
-    // }
-
-    // for await (let { code_bar, description, price, quantity } of products) {
-    //   await client.products.create({
-    //     data: {
-    //       code_bar,
-    //       description,
-    //       price,
-    //       quantity,
-    //     },
-    //   });
-    // }
-
-    // return res.json(products);
-    return res.json("ok");
-  },
 };
-
-// Modelo 2
-// axios.defaults.headers.post['header1'] = 'value' // for POST requests
-// axios.defaults.headers.common['header1'] = 'value' // for all requests
-// axios.defaults.headers.post['Custom-Origin'] = 'https://univille.abaris.com.br/'
-// axios.defaults.headers.post['Content-Type'] = 'application/json'
-// axios.defaults.headers.post['version'] = req.headers.version
-
-// try {
-//     const body = '{"userName": "api.integra", "password": "@pi.1nt3gr@"}'
-//     const { data } = await axios.post('https://workflow.abaris.com.br/api/v1/login', body);
-//     return res.json(data)
-// } catch (error) {
-//     console.error(error);
-// }
