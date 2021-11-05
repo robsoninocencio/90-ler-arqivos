@@ -8,11 +8,11 @@ const router = Router();
 
 router.post("/login", DiplomaDigitalController.login);
 
-router.post(
-  "/attach2",
-  // multerConfig.single("file"),
-  DiplomaDigitalController.attachNew
-);
+// router.post(
+//   "/attach2",
+//   // multerConfig.single("file"),
+//   DiplomaDigitalController.attachNew
+// );
 
 router.get("/", (req, res) => {
   return res.send("Hello World!!!");
