@@ -24,3 +24,7 @@ docker run -v "$(pwd)"/db:/var/lib/postgresql/data --name postgres -p 5432:5432 
 
 yarn prisma migrate dev
 create_products
+
+yarn add ts-node-dev -D
+
+yarn tsc
